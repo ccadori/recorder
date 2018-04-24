@@ -28,9 +28,15 @@ namespace Recorder.Demo
                 return;
 
             if (recorder.IsPlaying())
+			{
                 recorder.Stop();
+				CancelInvoke("PlayingEnds");
+			}
             else
+			{
                 recorder.Play(lastRecord);
+				Invoke("PlayingEnds", lastRecord.length + 0.1f);
+			}
 
             UpdateButtons();
         }
@@ -58,7 +64,7 @@ namespace Recorder.Demo
             else if (recorder.IsPlaying())
             {
                 recordButton.interactable = false;
-                recordButtonText.text = "Recording";
+                recordButtonText.text = "Record";
 
                 playButton.interactable = true;
                 playButtonText.text = "Stop";
@@ -76,5 +82,10 @@ namespace Recorder.Demo
 				playButtonText.text = "Play";
             }
         }
+
+		private void PlayingEnds()
+		{
+			UpdateButtons();
+		}
     }
 }

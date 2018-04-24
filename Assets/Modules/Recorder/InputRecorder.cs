@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace Recorder
 {
@@ -14,7 +15,7 @@ namespace Recorder
         private State state;
         private Record currentRecord;
         private float startTime;
-        
+
         public bool IsPlaying()
         {
             if (state == State.Playing)
